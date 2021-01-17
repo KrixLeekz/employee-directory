@@ -8,6 +8,13 @@ class DataArea extends Component {
         order: "descend",
         results: [],
         filteredResults: [],
+        headings: [
+            {name: "Image"},
+            { name: "Name", width: "10%" },
+            { name: "Phone", width: "20%" },
+            { name: "Email", width: "20%" },
+            { name: "DOB", width: "10%" }
+        ],
         error: ""
     };
 
@@ -19,6 +26,21 @@ class DataArea extends Component {
           });
         });
     }
+
+    render() {
+        return (
+          <>
+            <Nav handleSearchChange={this.state.handleSearchChange} />
+            <div className="data-area">
+              <DataTable
+                headings={this.state.headings}
+                users={this.state.filteredUsers}
+                handleSort={this.state.handleSort}
+              />
+            </div>
+          </>
+        );
+      }
 }
 
 export default DataArea;
