@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import API from "../utils/API";
-import "../styles/DataArea.css";
+import Navbar from "../Navbar";
+import Table from "../Table";
+import API from "../../utils/API";
+import "./styles.css";
 
 class DataArea extends Component {
   constructor() {
     super();
     this.state = {
-      search: "",
       order: "descend",
-      results: [{}],
-      filteredResults: [{}],
+      users: [{}],
+      filteredusers: [{}],
       headings: [
         { name: "Image" },
         { name: "Name" },
@@ -17,7 +18,6 @@ class DataArea extends Component {
         { name: "Email" },
         { name: "DOB" }
       ],
-      error: "",
 
       handleSort: heading => {
         if (this.state.order === "descend") {
@@ -57,30 +57,30 @@ class DataArea extends Component {
           }
 
         }
-        const sortedResults = this.state.filteredResults.sort(compare);
-        this.setState({ filteredResults: sortedResults });
+        const sortedusers = this.state.filteredusers.sort(compare);
+        this.setState({ filteredusers: sortedusers });
       },
 
       handleSearchChange: event => {
         console.log(event.target.value);
         const filter = event.target.value;
-        const filteredList = this.state.results.filter(item => {
+        const filteredList = this.state.users.filter(item => {
           let values = Object.values(item)
             .join("")
             .toLowerCase();
           return values.indexOf(filter.toLowerCase()) !== -1;
         });
-        this.setState({ filteredResults: filteredList });
+        this.setState({ filteredusers: filteredList });
       }
     };
   }
 
 
   componentDidMount() {
-    API.getNumEmployees(500).then(results => {
+    API.getNumEmployees().then(res => {
       this.setState({
-        results: results.data.results,
-        filteredResults: results.data.results
+        users: res.data.results,
+        filteredusers: res.data.results
       });
     });
   }
@@ -88,11 +88,11 @@ class DataArea extends Component {
   render() {
     return (
       <>
-        <Nav handleSearchChange={this.state.handleSearchChange} />
+        <Navbar handleSearchChange={this.state.handleSearchChange} />
         <div className="data-area">
-          <DataTable
+          <Table
             headings={this.state.headings}
-            results={this.state.filteredResults}
+            users={this.state.filteredusers}
             handleSort={this.state.handleSort}
           />
         </div>
