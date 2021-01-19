@@ -1,7 +1,6 @@
 import React from 'react';
 import Search from "../Search";
 import Filter from "../Filter";
-import "./styles.css";
 
 function Navbar ({handleSearchChange, handleFormSubmit}){
     return (
@@ -23,7 +22,7 @@ function Navbar ({handleSearchChange, handleFormSubmit}){
                 <Filter handleFormSubmit={handleFormSubmit} />
               </div>
             </div>
-            <div className="search-area col-4">
+            <div className="col-4">
               <Search handleSearchChange={handleSearchChange} />
             </div>
           </div>

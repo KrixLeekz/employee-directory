@@ -4,7 +4,7 @@ import "./styles.css";
 class Head extends Component {
   render() {
     return (
-      <div className="header">
+      <div className="heading">
         <h1>Employee Directory</h1>
       </div>
     )
