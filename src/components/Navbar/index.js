@@ -1,8 +1,9 @@
 import React from 'react';
 import Search from "../Search";
+import Filter from "../Filter";
 import "./styles.css";
 
-function Navbar ({handleSearchChange}){
+function Navbar ({handleSearchChange, handleFormSubmit}){
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <button
@@ -19,12 +20,8 @@ function Navbar ({handleSearchChange}){
           <div className="collapse navbar-collapse row" id="navbarNav">
             <div className="input-group col-8">
               <div className="input-group-prepend">
-                <span className="input-group-text" id="">
-                  DOB
-                </span>
+                <Filter handleFormSubmit={handleFormSubmit} />
               </div>
-              <input type="date" className="form-control" />
-              <input type="date" className="form-control" />
             </div>
             <div className="search-area col-4">
               <Search handleSearchChange={handleSearchChange} />
