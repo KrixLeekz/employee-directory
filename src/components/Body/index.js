@@ -23,7 +23,7 @@ function Body({ users }) {
                   className="img-responsive"
                 />
               </td>
-              <td data-th="Name" className="name-cell align-middle">
+              <td data-th="Name" className="align-middle">
                 {name.first} {name.last}
               </td>
               <td data-th="Phone" className="align-middle">
